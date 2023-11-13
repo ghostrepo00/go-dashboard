@@ -5,8 +5,8 @@ import (
 
 	"github.com/caarlos0/env"
 	"github.com/ghostrepo00/go-dashboard/config"
-	"github.com/ghostrepo00/go-dashboard/internal/app"
 	"github.com/ghostrepo00/go-dashboard/internal/pkg/model"
+	"github.com/ghostrepo00/go-dashboard/internal/web"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 
 		if appConfig, err := config.NewAppConfig(filepath.Join("./config/config.json", configFileExtension)); err == nil {
 			appConfig.DbConnection = envSettings.ConnectionString
-			app.Run(appConfig)
+			web.Run(appConfig)
 		} else {
 			panic(err)
 		}

@@ -1,4 +1,4 @@
-package app
+package web
 
 import (
 	"io"
@@ -8,13 +8,20 @@ import (
 	"time"
 
 	"github.com/ghostrepo00/go-dashboard/config"
-	"github.com/ghostrepo00/go-dashboard/internal/app/web"
 	appconstant "github.com/ghostrepo00/go-dashboard/internal/pkg/app_constant"
+	"github.com/ghostrepo00/go-dashboard/internal/web/handler"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
+
+func ConfigureWebRouter(router *gin.Engine, appConfig *config.AppConfig, dbClient *gorm.DB) {
+	router.LoadHTMLGlob("internal/web/template/*")
+	router.Static("/asset", "internal/app/web/asset")
+
+	handler.ConfigureBookmarkRouter(router)
+}
 
 func getLogFileName(appConfig *config.AppConfig) (result string) {
 	currentDate := time.Now()
@@ -53,7 +60,7 @@ func Run(appConfig *config.AppConfig) {
 			router := gin.Default()
 			router.Use(cors.Default())
 			//api.ConfigureApiRouter(router, appConfig, dbClient)
-			web.ConfigureWebRouter(router, appConfig, dbClient)
+			ConfigureWebRouter(router, appConfig, dbClient)
 			router.Run(appConfig.Api.Host)
 
 		} else {
