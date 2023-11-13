@@ -8,7 +8,10 @@ import (
 	"time"
 
 	"github.com/ghostrepo00/go-dashboard/config"
+	"github.com/ghostrepo00/go-dashboard/internal/app/web"
 	appconstant "github.com/ghostrepo00/go-dashboard/internal/pkg/app_constant"
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -47,11 +50,15 @@ func Run(appConfig *config.AppConfig) {
 
 			slog.Info("Database connected")
 
+			router := gin.Default()
+			router.Use(cors.Default())
+			//api.ConfigureApiRouter(router, appConfig, dbClient)
+			web.ConfigureWebRouter(router, appConfig, dbClient)
+			router.Run(appConfig.Api.Host)
+
 		} else {
 			panic(err)
 		}
-
-		slog.Info("App terminated")
 
 	} else {
 		panic(err)
