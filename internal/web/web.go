@@ -20,7 +20,7 @@ func ConfigureWebRouter(router *gin.Engine, appConfig *config.AppConfig, dbClien
 	router.LoadHTMLGlob("internal/web/template/*")
 	router.Static("/asset", "internal/app/web/asset")
 
-	handler.ConfigureBookmarkRouter(router)
+	handler.ConfigureBookmarkRouter(router, appConfig, dbClient)
 }
 
 func getLogFileName(appConfig *config.AppConfig) (result string) {
