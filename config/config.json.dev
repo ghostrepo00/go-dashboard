@@ -1,0 +1,11 @@
+{
+    "log": {
+        "path": "./logs",
+        "fileName": "dashboard-api.log"
+    },
+    "api": {
+        "host": "localhost:8888",
+        "basePath": "/api/v1",
+        "faviconFolder": "./logs"
+    }
+}
