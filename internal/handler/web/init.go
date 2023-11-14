@@ -16,6 +16,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 func ConfigureWebRouter(router *gin.Engine, appConfig *config.AppConfig, dbClient *gorm.DB) {
@@ -57,7 +58,8 @@ func Run(appConfig *config.AppConfig) {
 
 		slog.Info("App started")
 		// Configure Database
-		if dbClient, err := gorm.Open(postgres.Open(appConfig.DbConnection), &gorm.Config{}); err == nil {
+		gormOption := &gorm.Config{Logger: logger.Default.LogMode(logger.Info)}
+		if dbClient, err := gorm.Open(postgres.Open(appConfig.DbConnection), gormOption); err == nil {
 			defer func() {
 				dbCon, _ := dbClient.DB()
 				dbCon.Close()

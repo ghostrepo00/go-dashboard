@@ -15,8 +15,8 @@ func ConfigureWebtagRouter(router *gin.Engine, webtagApp appinterface.WebtagApp)
 		})
 
 		webtagGroup.GET("test", func(c *gin.Context) {
-			webtagApp.GetWebtag()
-			c.HTML(http.StatusOK, "webtag.body", gin.H{})
+			items, _ := webtagApp.GetWebtag()
+			c.HTML(http.StatusOK, "webtag.result", gin.H{"items": items})
 		})
 	}
 }

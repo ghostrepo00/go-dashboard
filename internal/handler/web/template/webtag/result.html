@@ -1,0 +1,11 @@
+{{ define "webtag.result" }}
+<div style="displa:flex; flex-direction: column;">
+    <div>
+        {{range .items}}
+            <div>{{ .Title }}</div>
+            <div>{{ .Url }}</div>
+            <div>-----------------------------------------------</div>
+        {{end}}
+    </div>
+</div>
+{{ end }}
