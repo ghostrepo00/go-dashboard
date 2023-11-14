@@ -26,7 +26,8 @@ func ConfigureWebRouter(router *gin.Engine, appConfig *config.AppConfig, dbClien
 	router.Static("/assets", "internal/handler/web/assets")
 
 	webtagApp := app.NewWebtagApp(appConfig, repo.NewWebtagRepository(dbClient))
-	ConfigureHomeRouter(router, webtagApp)
+
+	ConfigureHomeRouter(router)
 	ConfigureWebtagRouter(router, webtagApp)
 }
 
