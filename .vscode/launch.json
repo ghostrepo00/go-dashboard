@@ -1,5 +1,6 @@
 {
-    // Reference for compounds settings https://code.visualstudio.com/Docs/editor/debugging#_multitarget-debugging
+    // Ref for compounds settings https://code.visualstudio.com/Docs/editor/debugging#_multitarget-debugging
+    // Ref for debug with air attach https://www.arhea.net/posts/2023-08-25-golang-debugging-with-air-and-vscode/
     "version": "0.2.0",
     "configurations": [
         {
