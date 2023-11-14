@@ -1,4 +1,4 @@
-package webtag
+package entity
 
 import "github.com/lib/pq"
 

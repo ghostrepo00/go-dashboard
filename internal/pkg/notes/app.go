@@ -1,4 +1,0 @@
-package notes
-
-func NewApp() {
-}

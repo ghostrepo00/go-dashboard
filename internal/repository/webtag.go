@@ -6,11 +6,7 @@ type repository struct {
 	DbClient *gorm.DB
 }
 
-type WebtagRepository interface {
-	GetWebtag() error
-}
-
-func NewRepository(dbClient *gorm.DB) *repository {
+func NewWebtagRepository(dbClient *gorm.DB) *repository {
 	return &repository{dbClient}
 }
 

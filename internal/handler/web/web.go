@@ -1,6 +1,7 @@
 package web
 
 import (
+	"html/template"
 	"io"
 	"log/slog"
 	"os"
@@ -8,8 +9,9 @@ import (
 	"time"
 
 	"github.com/ghostrepo00/go-dashboard/config"
+	"github.com/ghostrepo00/go-dashboard/internal/app"
 	appconstant "github.com/ghostrepo00/go-dashboard/internal/pkg/app_constant"
-	"github.com/ghostrepo00/go-dashboard/internal/web/handler"
+	repo "github.com/ghostrepo00/go-dashboard/internal/repository"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/postgres"
@@ -17,10 +19,15 @@ import (
 )
 
 func ConfigureWebRouter(router *gin.Engine, appConfig *config.AppConfig, dbClient *gorm.DB) {
-	router.LoadHTMLGlob("internal/web/template/*")
-	router.Static("/asset", "internal/app/web/asset")
+	t := template.Must(template.ParseGlob("internal/handler/web/template/*.html"))
+	t = template.Must(t.ParseGlob("internal/handler/web/template/**/*.html"))
+	router.SetHTMLTemplate(t)
 
-	handler.ConfigureBookmarkRouter(router, appConfig, dbClient)
+	router.Static("/assets", "internal/handler/web/assets")
+
+	webtagApp := app.NewWebtagApp(appConfig, repo.NewWebtagRepository(dbClient))
+	ConfigureHomeRouter(router, webtagApp)
+	ConfigureWebtagRouter(router, webtagApp)
 }
 
 func getLogFileName(appConfig *config.AppConfig) (result string) {

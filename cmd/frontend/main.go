@@ -5,8 +5,8 @@ import (
 
 	"github.com/caarlos0/env"
 	"github.com/ghostrepo00/go-dashboard/config"
+	"github.com/ghostrepo00/go-dashboard/internal/handler/web"
 	"github.com/ghostrepo00/go-dashboard/internal/pkg/model"
-	"github.com/ghostrepo00/go-dashboard/internal/web"
 )
 
 func main() {
