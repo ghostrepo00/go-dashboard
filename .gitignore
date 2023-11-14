@@ -19,6 +19,7 @@
 
 # Go workspace file
 go.work
+internal/handler/web/assets/style/tailwind.css
 /logs/*.log
 /node_modules
 /tmp
