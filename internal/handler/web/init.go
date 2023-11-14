@@ -20,8 +20,7 @@ import (
 )
 
 func ConfigureWebRouter(router *gin.Engine, appConfig *config.AppConfig, dbClient *gorm.DB) {
-	t := template.Must(template.ParseGlob("internal/handler/web/template/*.html"))
-	t = template.Must(t.ParseGlob("internal/handler/web/template/**/*.html"))
+	t := template.Must(template.ParseGlob("internal/handler/web/template/**/*.html"))
 	router.SetHTMLTemplate(t)
 
 	router.Static("/assets", "internal/handler/web/assets")
