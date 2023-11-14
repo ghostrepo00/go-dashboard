@@ -19,12 +19,32 @@
             "cwd": "${workspaceFolder}",
             "program": "${workspaceFolder}/cmd/backend",            
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "name": "tailwind",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": [
+                "tailwindcss", "-i", "internal/handler/web/assets/style/tailwind.input.css", "-o", "internal/handler/web/assets/style/tailwind.css"
+            ]
+        },
+        {
+            "name": "tailwind--watch",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": [
+                "tailwindcss", "-i", "internal/handler/web/assets/style/tailwind.input.css", "-o", "internal/handler/web/assets/style/tailwind.css", "--watch"
+            ]
         }
     ],
     "compounds": [
         {
-            "name": "run_all",
-            "configurations": ["backend", "frontend"]
+            "name": "frontend+tailwind",
+            "configurations": ["tailwind", "frontend"]
         }
     ]
 }

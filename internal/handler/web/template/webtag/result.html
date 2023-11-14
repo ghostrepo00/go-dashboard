@@ -1,8 +1,8 @@
 {{ define "webtag.result" }}
-<div style="displa:flex; flex-direction: column;">
-    <div>
+<div>
+    <div class="flex flex-col">
         {{range .items}}
-            <div>{{ .Title }}</div>
+            <div class="text-3xl font-bold">{{ .Title }}</div>
             <div>{{ .Url }}</div>
             <div>-----------------------------------------------</div>
         {{end}}
