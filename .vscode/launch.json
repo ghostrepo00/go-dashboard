@@ -42,14 +42,15 @@
             ]
         },
         {
-            "name": "attach",
+            "name": "attach-to-air",
             "type": "go",
             "request": "attach",
             "mode": "remote",
             "port": 2345,
             "host": "127.0.0.1",
             "apiVersion": 2,
-            "showLog": true
+            "showLog": true,
+            "trace": "verbose"
         },
         {
             "name": "air",
@@ -68,10 +69,6 @@
         {
             "name": "air_tailwindwatch", // hot reload WITHOUT breakpoint
             "configurations": ["air", "tailwindwatch"]
-        },
-        {
-            "name": "air_tailwind_attach", // hot reload WITH breakpoint, but attach process will close when there is file change
-            "configurations": ["air", "tailwind", "attach"]
         }
     ]
 }
