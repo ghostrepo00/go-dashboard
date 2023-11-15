@@ -1,0 +1,8 @@
+#Live reload with Air
+```
+air -c .\.air.toml
+```
+
+#Live reload with GIN
+1. open cmd
+2. gin --build ./cmd/frontend -immediate --port 3000 --appPort 8888 --all --path ./internal/handler/web/template
